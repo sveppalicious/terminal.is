@@ -20,6 +20,7 @@ function drawArrivalTable(arrivalData) {
         drawArrivalRow(arrivalData[i]);
     }
 }
+
 function drawArrivalRow(rowArrivalData) {
     var row = $("<tr />")
     $("#arrivals").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
@@ -31,17 +32,19 @@ function drawArrivalRow(rowArrivalData) {
     row.append("<td data-title='From' class='flightFrom mdl-data-table__cell--non-numeric'>" + rowArrivalData.from + "</td>");
     var time = currentTime();
     if (time < (rowArrivalData.plannedArrival)) {
-      row.append("<td id='target-element' data-title='Arrival'class='flightArrival'>" + rowArrivalData.plannedArrival + "</td>");
+        row.append("<td id='target-element' data-title='Arrival'class='flightArrival'>" + rowArrivalData.plannedArrival + "</td>");
     } else {
-    row.append("<td data-title='Arrival'class='flightArrival'>" + rowArrivalData.plannedArrival + "</td>"); }
+        row.append("<td data-title='Arrival'class='flightArrival'>" + rowArrivalData.plannedArrival + "</td>");
+    }
 
     if (rowArrivalData.realArrival === "") {
-      row.append("<td data-title='Status' class='flightStatus mdl-data-table__cell--non-numeric'>" + "On time" + "</td>");
+        row.append("<td data-title='Status' class='flightStatus mdl-data-table__cell--non-numeric'>" + "On time" + "</td>");
     } else {
-      row.append("<td data-title='Status' class='flightStatus mdl-data-table__cell--non-numeric'>" + rowArrivalData.realArrival + "</td>");
+        row.append("<td data-title='Status' class='flightStatus mdl-data-table__cell--non-numeric'>" + rowArrivalData.realArrival + "</td>");
     }
 
 }
+
 function addZero(i) {
     if (i < 10) {
         i = "0" + i;

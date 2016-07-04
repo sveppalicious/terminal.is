@@ -2,7 +2,10 @@ $.ajax({
     url: 'https://apis.is/flight?language=en&type=departures',
     type: 'GET',
     dataType: "json",
-    departureData: {'language': 'en', 'type': 'departures'},
+    departureData: {
+        'language': 'en',
+        'type': 'departures'
+    },
     success: function(departureData) {
         departureData = departureData.results;
         drawDepartureTable(departureData);
@@ -28,9 +31,9 @@ function drawDepartureRow(rowDepartureData) {
     row.append("<td data-title='Departure'>" + rowDepartureData.plannedArrival + "</td>");
 
     if (rowDepartureData.realArrival === "") {
-      row.append("<td data-title='Status' class='mdl-data-table__cell--non-numeric'>" + "On time" + "</td>");
+        row.append("<td data-title='Status' class='mdl-data-table__cell--non-numeric'>" + "On time" + "</td>");
     } else {
-    row.append("<td data-title='Status' class='mdl-data-table__cell--non-numeric'>" + rowDepartureData.realArrival + "</td>");
+        row.append("<td data-title='Status' class='mdl-data-table__cell--non-numeric'>" + rowDepartureData.realArrival + "</td>");
     }
 
 }
