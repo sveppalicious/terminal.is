@@ -1,5 +1,5 @@
 $.ajax({
-    url: 'http://apis.is/flight',
+    url: 'https://apis.is/flight',
     type: 'GET',
     dataType: "json",
     arrivalData: {

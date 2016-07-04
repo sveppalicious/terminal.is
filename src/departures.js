@@ -1,5 +1,5 @@
 $.ajax({
-    url: 'http://apis.is/flight?language=en&type=departures',
+    url: 'https://apis.is/flight?language=en&type=departures',
     type: 'GET',
     dataType: "json",
     departureData: {'language': 'en', 'type': 'departures'},
