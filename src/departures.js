@@ -6,6 +6,7 @@ $.ajax({
         'language': 'en',
         'type': 'departures'
     },
+    cache: "false",
     success: function(departureData) {
         departureData = departureData.results;
         drawDepartureTable(departureData);

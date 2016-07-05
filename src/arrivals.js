@@ -7,7 +7,7 @@ $.ajax({
             'language': 'en',
             'type': 'arrivals'
         },
-
+    cache: "false",
     },
     success: function(arrivalData) {
         arrivalData = arrivalData.results;
