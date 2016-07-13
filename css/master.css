@@ -12,10 +12,32 @@ a {
     text-decoration: none;
     color: #ffffff;
 }
+.date {
+    margin-left: 24px;
+}
+
+  .searchBtn {
+    position: fixed;
+    display: block;
+    right: 24px;
+    bottom: 45px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    z-index: 900;
+  }
+
+
+
+.mdl-textfield__label, .mdl-textfield__input {
+  margin-left: 24px;
+}
+
+
 .shadow-z-1 {
-    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
-    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+      -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+      -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+
 }
 
 /* -- Material Design Table style -------------- */
@@ -161,4 +183,13 @@ a {
     .table-responsive-vertical .table-hover.table-mc-pink> tbody> tr> td:hover {
         background-color: #f8bbd0;
     }
+}
+#searchBtn {
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    z-index: 900;
 }

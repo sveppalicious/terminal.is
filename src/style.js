@@ -16,4 +16,21 @@ $(document).ready(function() {
     var monthIndex = date.getMonth();
     $("#date1").append(weekDays[weekIndex] + ", " + day + " " + monthNames[monthIndex]);
     $("#date2").append(weekDays[weekIndex] + ", " + day + " " + monthNames[monthIndex]);
-})
+});
+$(document).ready(function () {
+
+    (function ($) {
+
+        $('#filter').keyup(function () {
+
+            var rex = new RegExp($(this).val(), 'i');
+            $('.searchable tr').hide();
+            $('.searchable tr').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+
+        })
+
+    }(jQuery));
+
+});
