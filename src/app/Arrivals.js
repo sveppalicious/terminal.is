@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, CardHeader, CardText, CardTitle} from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
 import Planks from 'react-planks';
-import {tealA200} from 'material-ui/styles/colors'
+import {greenA400} from 'material-ui/styles/colors'
 const styles = {
   spacer: {
     width: '10%'
@@ -58,7 +58,7 @@ class Arrivals extends React.Component {
 
                   </td>
                   <td>
-                    <Chip backgroundColor={tealA200}>
+                    <Chip backgroundColor={greenA400}>
                       {flight.realArrival}
                     </Chip>
                   </td>

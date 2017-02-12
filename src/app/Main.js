@@ -88,7 +88,7 @@ class Main extends Component {
           index={this.state.slideIndex}
           onChangeIndex={this.handleChange}
         >
-          <div>
+          <div style={styles.slide}>
             <Arrivals></Arrivals>
           </div>
           <div style={styles.slide}>

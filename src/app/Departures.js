@@ -2,9 +2,7 @@ import React from 'react';
 import {Card, CardHeader, CardText, CardTitle} from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
 import Planks from 'react-planks';
-import {MdFlightLand, MdFlightTakeOff, MdFlight, MdArrowForward} from 'react-icons/lib/md';
-import FontIcon from 'material-ui/FontIcon';
-import {greenA200, deepOrangeA100, deepOrangeA700, tealA200, deepOrangeA400} from 'material-ui/styles/colors'
+import {greenA400} from 'material-ui/styles/colors'
 //import {GoSignIn} from 'react-icons/go';
 
 const styles = {
@@ -12,18 +10,6 @@ const styles = {
     width: '10%'
   }
 }
-function findColor(status) {
-  if (status.startsWith('Departed')) {
-    return {tealA200};
-  } else if (status.startsWith('Gate Closed')) {
-    return {deepOrangeA700};
-  } else if (status.startsWith('Go To Gate')) {
-    return {deepOrangeA100};
-  } else if (status.startsWith('Final')) {
-    return {deepOrangeA400};
-  }
-}
-
 class Departures extends React.Component {
   constructor() {
     super();
@@ -40,20 +26,6 @@ class Departures extends React.Component {
         departures: departures.results
       });
     });
-  }
-
-  getColor(status) {
-    let color = {greenA200}
-    if (status.startsWith('Departed')) {
-      color = {tealA200};
-    } else if (status.startsWith('Gate Closed')) {
-      color = {deepOrangeA700};
-    } else if (status.startsWith('Go To Gate')) {
-      color = {deepOrangeA100};
-    } else if (status.startsWith('Final')) {
-      color = {deepOrangeA400};
-    }
-    return color;
   }
 
   renderFlights(key) {
@@ -87,7 +59,7 @@ class Departures extends React.Component {
 
                   </td>
                   <td>
-                    <Chip backgroundColor={tealA200}>
+                    <Chip backgroundColor={greenA400}>
                       {flight.realArrival}
                     </Chip>
                   </td>
