@@ -19,7 +19,7 @@ class Arrivals extends React.Component {
   }
 
   componentWillMount() {
-    fetch('http://apis.is/flight?language=en&type=arrivals')
+    fetch('https://apis.is/flight?language=en&type=arrivals')
       .then(response => response.json())
       .then((arrivals) => { this.setState({
         arrivals: arrivals.results

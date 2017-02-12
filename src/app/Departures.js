@@ -34,7 +34,7 @@ class Departures extends React.Component {
   }
 
   componentWillMount() {
-    fetch('http://apis.is/flight?language=en&type=departures')
+    fetch('https://apis.is/flight?language=en&type=departures')
       .then(response => response.json())
       .then((departures) => { this.setState({
         departures: departures.results
