@@ -1,0 +1,19 @@
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  font-size: 13px;
+  line-height: 20px;
+}
+#tableHeader {
+  font-size: small !important;
+  font-weight: lighter !important;
+  color: #878787 !important;
+}
+#timeRow {
+  font-size: x-large !important;
+  font-weight: lighter !important;
+  color: #212121 !important;
+  text-align: left;
+}
