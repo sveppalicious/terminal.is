@@ -1,13 +1,20 @@
 import React from 'react';
-import {Card, CardHeader, CardText, CardTitle} from 'material-ui/Card';
-import Chip from 'material-ui/Chip';
 import Planks from 'react-planks';
-import {greenA400} from 'material-ui/styles/colors'
-//import {GoSignIn} from 'react-icons/go';
+import FlightCard from './FlightCard';
+import axios from 'axios';
+import {greenA400, deepOrangeA100, deepOrangeA700, tealA200, deepOrangeA400} from 'material-ui/styles/colors';
 
-const styles = {
-  spacer: {
-    width: '10%'
+function findColor(status) {
+  if (status.startsWith('Departed')) {
+    return tealA200;
+  } else if (status.startsWith('Gate Closed')) {
+    return deepOrangeA700;
+  } else if (status.startsWith('Go To Gate')) {
+    return deepOrangeA100;
+  } else if (status.startsWith('Final')) {
+    return deepOrangeA400;
+  } else {
+    return greenA400;
   }
 }
 class Departures extends React.Component {
@@ -15,59 +22,34 @@ class Departures extends React.Component {
     super();
     this.renderFlights = this.renderFlights.bind(this);
     this.state = {
-      departures: [],
+      departures: {}
     };
   }
 
   componentWillMount() {
-    fetch('https://apis.is/flight?language=en&type=departures')
-      .then(response => response.json())
-      .then((departures) => { this.setState({
-        departures: departures.results
+    axios.get('https://apis.is/flight?language=en&type=departures')
+      //.then(response.=> response.data.json())
+      .then(function (response) {
+        //console.log(response.data);
+        this.setState({
+          departures: response.data.results
       });
-    });
+    }.bind(this));
   }
 
   renderFlights(key) {
     const flight = this.state.departures[key];
-    //let color = getColor(flight.realArrival)
+    const color = findColor(flight.realArrival);
     return (
-        <Card id="flightCard" style={styles.card} zDepth={3}>
-          <CardTitle
-            title={flight.to}
-            subtitle={flight.airline + "   " + flight.flightNumber}
-          />
-          <CardText>
-            <table>
-              <tbody>
-                <tr>
-                  <th  id="tableHeader" scope="colgroup">
-                    Scheduled departure
-                  </th>
-                  <th style={styles.spacer}>
-
-                  </th>
-                  <th  id="tableHeader" scope="colgroup">
-                    Status
-                  </th>
-                </tr>
-                <tr>
-                  <td id="timeRow">
-                    {flight.plannedArrival}
-                  </td>
-                  <td style={styles.spacer}>
-
-                  </td>
-                  <td>
-                    <Chip backgroundColor={greenA400}>
-                      {flight.realArrival}
-                    </Chip>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </CardText>
-        </Card>
+        <FlightCard
+          flightNumber={flight.flightNumber}
+          airline={flight.airline}
+          location={flight.to}
+          plannedArrival={flight.plannedArrival}
+          realArrival={flight.realArrival}
+          text={'Scheduled departure'}
+          color={color}
+        />
     )
   };
 

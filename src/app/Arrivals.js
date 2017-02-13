@@ -1,11 +1,20 @@
 import React from 'react';
-import {Card, CardHeader, CardText, CardTitle} from 'material-ui/Card';
-import Chip from 'material-ui/Chip';
 import Planks from 'react-planks';
-import {greenA400} from 'material-ui/styles/colors'
-const styles = {
-  spacer: {
-    width: '10%'
+import FlightCard from './FlightCard';
+import axios from 'axios';
+import {greenA400, deepOrangeA100, deepOrangeA700, tealA200, deepOrangeA400} from 'material-ui/styles/colors';
+
+function findColor(status) {
+  if (status.startsWith('Landed')) {
+    return tealA200;
+  } else if (status.startsWith('Confirm')) {
+    return greenA400;
+  } else if (status.startsWith('Estimat')) {
+    return deepOrangeA100;
+  } else if (status.startsWith('Cancel')) {
+    return deepOrangeA700;
+  } else {
+    return greenA400;
   }
 }
 
@@ -19,61 +28,40 @@ class Arrivals extends React.Component {
   }
 
   componentWillMount() {
-    fetch('https://apis.is/flight?language=en&type=arrivals')
-      .then(response => response.json())
-      .then((arrivals) => { this.setState({
-        arrivals: arrivals.results
+    axios.get('https://apis.is/flight?language=en&type=arrivals')
+      //.then(response.=> response.data.json())
+      .then(function (response) {
+        //console.log(response.data);
+        this.setState({
+          arrivals: response.data.results
       });
-    });
+    }.bind(this));
   }
 
   renderFlights(key) {
     const flight = this.state.arrivals[key];
-    // const hasLanded = flight.realArrival.startsWith('Landed');
+    const color = findColor(flight.realArrival);
     return (
-        <Card id="flightCard" style={styles.card} zDepth={3}>
-          <CardTitle
-            title={flight.from}
-            subtitle={flight.airline + "   " + flight.flightNumber}
-          />
-          <CardText>
-            <table>
-              <tbody>
-                <tr>
-                  <th  id="tableHeader" scope="colgroup">
-                    Scheduled arrival
-                  </th>
-                  <th style={styles.spacer}>
-
-                  </th>
-                  <th  id="tableHeader" scope="colgroup">
-                    Status
-                  </th>
-                </tr>
-                <tr>
-                  <td id="timeRow">
-                    {flight.plannedArrival}
-                  </td>
-                  <td style={styles.spacer}>
-
-                  </td>
-                  <td>
-                    <Chip backgroundColor={greenA400}>
-                      {flight.realArrival}
-                    </Chip>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </CardText>
-        </Card>
+        <FlightCard
+          flightNumber={flight.flightNumber}
+          airline={flight.airline}
+          location={flight.from}
+          plannedArrival={flight.plannedArrival}
+          realArrival={flight.realArrival}
+          text={'Scheduled arrival'}
+          color={color}
+        />
     )
   };
 
   render() {
     return (
       <Planks>
-        {Object.keys(this.state.arrivals).map(this.renderFlights)}
+        {
+          Object
+            .keys(this.state.arrivals)
+            .map(this.renderFlights)
+        }
       </Planks>
   )};
 }
