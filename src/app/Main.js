@@ -13,7 +13,8 @@ import Arrivals from './Arrivals'
 import Departures from './Departures'
 import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
-
+import {observable} from "mobx";
+import store from "./Store";
 const styles = {
   container: {
     textAlign: 'center',
@@ -89,7 +90,7 @@ class Main extends Component {
           onChangeIndex={this.handleChange}
         >
           <div style={styles.slide}>
-            <Arrivals></Arrivals>
+            <Arrivals store={store}></Arrivals>
           </div>
           <div style={styles.slide}>
             <Departures></Departures>

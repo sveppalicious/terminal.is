@@ -2,6 +2,8 @@ import React from 'react';
 import Planks from 'react-planks';
 import FlightCard from './FlightCard';
 import axios from 'axios';
+import { observer } from 'mobx-react';
+import DevTools from 'mobx-react-devtools';
 import {greenA400, deepOrangeA100, deepOrangeA700, tealA200, deepOrangeA400} from 'material-ui/styles/colors';
 
 function findColor(status) {
@@ -17,7 +19,7 @@ function findColor(status) {
     return greenA400;
   }
 }
-
+@observer
 class Arrivals extends React.Component {
   constructor() {
     super();
@@ -56,13 +58,16 @@ class Arrivals extends React.Component {
 
   render() {
     return (
-      <Planks>
-        {
-          Object
+      <div>
+        <DevTools></DevTools>
+        <Planks>
+          {
+            Object
             .keys(this.state.arrivals)
             .map(this.renderFlights)
-        }
-      </Planks>
+          }
+        </Planks>
+      </div>
   )};
 }
 export default Arrivals;
